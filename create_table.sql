@@ -5,7 +5,7 @@ CREATE TABLE birdstrikes (
     damage VARCHAR(16) NOT NULL,
     airline VARCHAR(255) NOT NULL,
     state VARCHAR(255),
-    phase_of_flight VARCHAR(32) NOT NULL,
+    phase_of_flight VARCHAR(32),
     reported_date DATE,
     bird_size VARCHAR(16),
     cost INTEGER NOT NULL,
