@@ -83,12 +83,8 @@ WHERE (LOWER(state) = 'alabama'
 ORDER BY cost DESC;
 ```
 
-## SOME more DML
-```UPDATE birdstrikes SET aircraft='Unknown' WHERE aircraft IS NULL;```
-
-```DELETE FROM birdstrikes WHERE aircraft = 'Unknown';```
-
-```TRUNCATE birdstrikes;```
+## Removing duplicates
+`SELECT DISTINCT state, size FROM birdstrikes;`
 
 ## WORKSHOP
 * Hány dollár volt a legtöbb kár?
@@ -99,32 +95,69 @@ ORDER BY cost DESC;
 * Hány államban történt baleset?
 * A hét melyik napján történt a legnagyobb kár?
 
+## SOME more DML
 
-## Removing duplicates
-`SELECT DISTINCT state, size FROM birdstrikes;`
+Updating
+```
+UPDATE birdstrikes SET aircraft='Unknown' WHERE aircraft IS NULL;
+```
+
+Deleting
+```
+DELETE FROM birdstrikes WHERE aircraft = 'Unknown';
+```
+
+Truncating
+```
+TRUNCATE birdstrikes;
+```
 
 ## Groupping and aggregation
-`SELECT COUNT(*) FROM birdstrikes;`
 
-`SELECT MAX(cost) FROM birdstrikes`
+COUNT(*)
+```
+SELECT COUNT(*) FROM birdstrikes;
+```
 
-`SELECT state, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state ORDER BY state;`
+Simple aggregations
+```
+SELECT MAX(cost) FROM birdstrikes
+```
 
-`SELECT state, aircraft, COUNT(*), MAX(cost), MIN(cost), AVG(cost) FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft`
+```
+SELECT state, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state ORDER BY state;
+```
 
-Sometimes it doesn't work:
-`SELECT aircraft, state, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state ORDER BY state;`
+Multiple aggregate functions:
+```
+SELECT state, aircraft, COUNT(*), MAX(cost), MIN(cost), AVG(cost) FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft
+```
+
+**Sometimes it doesn't work**:
+```
+SELECT aircraft, state, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state ORDER BY state;
+```
 
 Let's fix it:
-`SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state, aircraft ORDER BY state, aircraft`
+```
+SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state, aircraft ORDER BY state, aircraft
+```
 
 You can filter here, too:
-`SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft`
+```
+SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft
+```
 
-Advanced groupping
-`SELECT state, COUNT(*) FROM birdstrikes GROUP BY state HAVING COUNT(*) > 100;`
+Advanced groupping - HAVING
+```
+SELECT state, COUNT(*) FROM birdstrikes GROUP BY state HAVING COUNT(*) > 100;
+```
 
-`SELECT state, COUNT(*) FROM birdstrikes WHERE state IS NOT NULL GROUP BY state HAVING COUNT(*) > 100;`
+```
+SELECT state, COUNT(*) FROM birdstrikes
+WHERE state IS NOT NULL
+GROUP BY state HAVING COUNT(*) > 100;
+```
 
 ## WORKSHOP
  * Mégegyszer: Hány államban történt baleset? (Most egy szám legyen a képernyőn az eredmény)
