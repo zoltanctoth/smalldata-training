@@ -134,17 +134,49 @@ Advanced groupping
  * ^^ Ebből irasd ki az átlagos kárt azokban az állam/méret csoportokban, ahol több, mint 1000 baleset történt
 
 ## JOINING
-``` SELECT * FROM emberek JOIN varosok ON (emberek.varos_id = varosok.id);
+```
+SELECT * FROM emberek
+JOIN varosok ON (emberek.varos_id = varosok.id);
 ```
 
-``` SELECT * FROM emberek INNER JOIN varosok ON (emberek.varos_id = varosok.id);
+```
+SELECT * FROM emberek
+INNER JOIN varosok ON (emberek.varos_id = varosok.id);
 ```
 
-``` SELECT * FROM emberek LEFT JOIN varosok ON (emberek.varos_id = varosok.id);
+```
+SELECT * FROM emberek
+LEFT JOIN varosok ON (emberek.varos_id = varosok.id);
 ```
 
-``` SELECT * FROM emberek RIGHT JOIN varosok ON (emberek.varos_id = varosok.id);
+```
+SELECT * FROM emberek
+RIGHT JOIN varosok ON (emberek.varos_id = varosok.id);
 ```
 
-``` SELECT * FROM emberek FULL OUTER JOIN varosok ON (emberek.varos_id = varosok.id);
+```
+SELECT * FROM emberek
+FULL OUTER JOIN varosok ON (emberek.varos_id = varosok.id);
+```
+
+## Create table as SELECT
+```
+CREATE TABLE birdstrikes_denorm AS
+    SELECT b.*,s.id as state_id
+    FROM birdstrikes b
+       LEFT JOIN states s ON (b.state = s.state_name);
+ALTER TABLE birdstrikes_denorm DROP state;
+```
+
+## WORKSHOP
+ * Újra: Hány államban történtek balesetek?
+ * Nézd meg, hogy hány sort látunk a különböző joinoknál a táblában (INNER, LEFT, RIGHT, FULL OUTER)
+
+### Zeppelin
+```
+%psql.sql SELECT EXTRACT(dow FROM flight_date) as week, COUNT(*) FROM birdstrikes GROUP BY week;
+```
+
+```
+%psql.sql %psql.sql SELECT bird_size, damage, count(*) FROM birdstrikes WHERE bird_size IS NOT NULL and damage IS NOT NULL GROUP BY bird_size, damage;
 ```
