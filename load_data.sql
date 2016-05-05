@@ -1,2 +1,2 @@
-COPY birdstrikes FROM '/home/smalldata/anyagok/birdstrikes.csv' DELIMITER ';' HEADER CSV;
+COPY birdstrikes FROM '/Users/zoltanctoth/src/smalldata-training/birdstrikes.csv' DELIMITER ';' HEADER CSV;
 

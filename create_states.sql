@@ -3,6 +3,6 @@ CREATE TABLE states (
     state_name VARCHAR(64) NOT NULL,
     PRIMARY KEY(id)
 );
-COPY states FROM '/home/smalldata/anyagok/states.csv' DELIMITER ';' CSV;
+COPY states FROM '/Users/zoltanctoth/src/smalldata-training/states.csv' DELIMITER ';' CSV;
 
 
