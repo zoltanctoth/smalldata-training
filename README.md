@@ -160,10 +160,9 @@ GROUP BY state HAVING COUNT(*) > 100;
 ```
 
 ## WORKSHOP
- * Mégegyszer: Hány államban történt baleset? (Most egy szám legyen a képernyőn az eredmény)
  * Melyik államban történt a legtöbb összkár
  * Átlagosan melyik méretű madár mekkora kárt okoz?
- * Írasd ki madár és állam-méretenként (tehát 2 mezőn együttesen csoportosítva) a legnagyobb kár értékét.
+ * Írasd ki állam és madár-méretenként (tehát 2 mezőn együttesen csoportosítva) a legnagyobb kár értékét.
  * ^^ Ebből irasd ki az átlagos kárt azokban az állam/méret csoportokban, ahol több, mint 1000 baleset történt
 
 ## JOINING
