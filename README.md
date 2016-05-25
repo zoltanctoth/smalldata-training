@@ -37,7 +37,7 @@ Reverse ordering by multple fields
 `SELECT state, cost FROM birdstrikes ORDER BY state DESC, cost;`
 
 ## Renaming fields
-`SELECT bird_size as size, state FROM birdstrikes`
+`SELECT bird_size as size, state FROM birdstrikes;`
 
 ```
 SELECT
@@ -70,7 +70,7 @@ Lowercase: `LOWER`
 Uppercase: `UPPER`
 
 ```
-SELECT EXTRACT(DOW FROM flight_date) as day_of_week, * FROM birdstrikes
+SELECT EXTRACT(DOW FROM flight_date) as day_of_week, * FROM birdstrikes;
 ```
 
 It can go complicated:
@@ -121,7 +121,7 @@ SELECT COUNT(*) FROM birdstrikes;
 
 Simple aggregations
 ```
-SELECT MAX(cost) FROM birdstrikes
+SELECT MAX(cost) FROM birdstrikes;
 ```
 
 ```
@@ -130,7 +130,7 @@ SELECT state, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state ORDER BY sta
 
 Multiple aggregate functions:
 ```
-SELECT state, aircraft, COUNT(*), MAX(cost), MIN(cost), AVG(cost) FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft
+SELECT state, aircraft, COUNT(*), MAX(cost), MIN(cost), AVG(cost) FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft;
 ```
 
 **Sometimes it doesn't work**:
@@ -140,12 +140,12 @@ SELECT aircraft, state, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state OR
 
 Let's fix it:
 ```
-SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state, aircraft ORDER BY state, aircraft
+SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes GROUP BY state, aircraft ORDER BY state, aircraft;
 ```
 
 You can filter here, too:
 ```
-SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft
+SELECT state, aircraft, MAX(cost) AS max_cost FROM birdstrikes WHERE state LIKE 'A%' GROUP BY state, aircraft ORDER BY state, aircraft;
 ```
 
 Advanced groupping - HAVING
